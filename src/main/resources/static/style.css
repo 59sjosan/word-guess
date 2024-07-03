@@ -1,0 +1,25 @@
+body {
+    background: url('jungle1.jpg') repeat-x, url('jungle2.jpg') repeat-x;
+    background-size: 200% 200%;
+    animation: moveBackground 30s linear infinite;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+}
+
+@keyframes moveBackground {
+    from {
+        background-position: 0 0, 100% 0;
+    }
+    to {
+        background-position: -100% 0, 0 0;
+    }
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly opaque white background for content */
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 50px;
+}

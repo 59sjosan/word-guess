@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles to center content vertically and horizontally */
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('jungle1.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Slightly opaque white background for content */
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="card shadow-lg">
+    <div class="card-header text-center">
+        <h1>Login</h1>
+    </div>
+    <div class="card-body">
+        <form action="/login" method="post">
+            <div class="mb-3">
+                <label>
+                    <h3 for="email" class="form-label">Email:</h3>
+                </label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label>
+                    <h3 for="password" class="form-label">Password:</h3>
+                </label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+        <p th:text="${error}" class="mt-3 text-danger text-center"></p>
+    </div>
+</div>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

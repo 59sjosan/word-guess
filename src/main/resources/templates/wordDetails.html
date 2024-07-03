@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Word Details</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Optional: jQuery and Bootstrap JS for additional Bootstrap functionality -->
+    <style>
+        body {
+            background: url('jungle1.jpg') repeat-x, url('jungle2.jpg') repeat-x;
+            background-size: 200% 200%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        @keyframes moveBackground {
+            from {
+                background-position: 0 0, 100% 0;
+            }
+            to {
+                background-position: -100% 0, 0 0;
+            }
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Slightly opaque white background for content */
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 50px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Word Details</h2>
+        </div>
+        <div class="card-body">
+            <p class="card-text"><strong>Word:</strong> <span th:text="${word.word}"></span></p>
+            <p class="card-text"><strong>Hints:</strong>
+            <ul class="list-group">
+                <li class="list-group-item" th:each="hint : ${word.hints}" th:text="${hint}"></li>
+            </ul>
+            </p>
+            <p class="card-text"><strong>Level:</strong> <span th:text="${word.level}"></span></p>
+        </div>
+        <div class="card-footer text-center">
+            <a href="/" class="btn btn-primary">Back to Home</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

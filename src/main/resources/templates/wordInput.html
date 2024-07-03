@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Input</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('jungle2.jpg') repeat-x;
+            background-size: 200% 200%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Slightly opaque white background for content */
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 50px;
+        }
+
+        .input-container {
+            display: inline-block;
+            margin: 5px;
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .letter-input {
+            width: 100%;
+            height: 100%;
+            font-size: 1.9rem;
+            text-align: center;
+            border: none;
+            outline: none;
+        }
+
+        .letter-input:focus {
+            border-color: #007bff;
+            box-shadow: none;
+            outline: none;
+        }
+
+        .letter-input::placeholder {
+            text-align: center;
+        }
+
+        .bold-hint {
+            font-weight: bold;
+            color: white; /* Changed to white */
+        }
+    </style>
+</head>
+<body class="container">
+<h2 class="text-center my-4">Word Input</h2>
+<form action="/checkWord" method="post">
+    <p th:text="${GivenHints}" class="text-success text-center bold-hint hint-text"></p>
+    <div class="d-flex justify-content-center">
+        <div class="input-container">
+            <input type="text" maxlength="1" id="char1" class="letter-input" required>
+        </div>
+        <div class="input-container">
+            <input type="text" maxlength="1" id="char2" class="letter-input" required>
+        </div>
+        <div class="input-container">
+            <input type="text" maxlength="1" id="char3" class="letter-input" required>
+        </div>
+        <div class="input-container">
+            <input type="text" maxlength="1" id="char4" class="letter-input" required>
+        </div>
+        <div class="input-container">
+            <input type="text" maxlength="1" id="char5" class="letter-input" required>
+        </div>
+    </div>
+    <input type="hidden" id="word" name="word">
+    <button type="submit" class="btn btn-primary mt-3">Submit Your Guess</button>
+</form>
+<p th:text="${message}" class="text-danger text-center mt-3"></p>
+
+<!-- Bootstrap JavaScript and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const inputs = document.querySelectorAll('.letter-input');
+        const hiddenWordInput = document.getElementById('word');
+
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', function () {
+                if (input.value.length > 0 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+                updateHiddenWordInput();
+            });
+
+            input.addEventListener('keydown', function (e) {
+                if (e.key === 'Backspace' && input.value === '' && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+
+        function updateHiddenWordInput() {
+            let word = '';
+            inputs.forEach(input => {
+                word += input.value;
+            });
+            hiddenWordInput.value = word;
+        }
+    });
+</script>
+</body>
+</html>
